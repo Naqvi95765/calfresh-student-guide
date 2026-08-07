@@ -1,0 +1,23 @@
+{
+  "halfTime": {
+    "question": "Does your school consider you enrolled at least half-time?",
+    "help": "Your school registrar or student portal may show your enrollment level."
+  },
+  "mealPlan": {
+    "question": "Do you live on campus and get more than half of your meals through a college meal plan?"
+  },
+  "workStudy": {
+    "question": "Were you approved for work-study?",
+    "help": "This can count even if the job has not started yet or is not available.",
+    "result": "You may meet the work-study student exemption."
+  },
+  "workHours": {
+    "question": "About how many paid hours do you work each week?",
+    "threshold": 20,
+    "result": "You may meet the work requirement exemption."
+  },
+  "nextTerm": {
+    "question": "Do you plan to enroll next term?",
+    "resultIfNo": "You may meet the exemption for not planning to enroll next term."
+  }
+}
