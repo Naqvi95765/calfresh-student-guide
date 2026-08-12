@@ -16,6 +16,25 @@
     "threshold": 20,
     "result": "You may meet the work requirement exemption."
   },
+  "disabilityIncome": {
+    "question": "Do you receive disability-based income?"
+  },
+  "unableWork": {
+    "question": "Do you have a physical or mental condition that keeps you from working an average of 20 hours a week while attending school?"
+  },
+  "childCare": {
+    "question": "Are you responsible for the care of a child in your household?",
+    "followUp": "Which statement applies?"
+  },
+  "training": {
+    "question": "Are you in CalFresh Employment and Training, WIOA, on-the-job training, or a program under Section 236 of the Trade Act of 1974?"
+  },
+  "campus": {
+    "question": "What school or campus do you attend? I can search the approved LPIE list."
+  },
+  "program": {
+    "question": "What is your program, major, degree, or certificate called?"
+  },
   "nextTerm": {
     "question": "Do you plan to enroll next term?",
     "resultIfNo": "You may meet the exemption for not planning to enroll next term."
