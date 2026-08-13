@@ -13,7 +13,9 @@ main{padding:16px 16px 120px}.notice{background:#fff7dc;border:1px solid #eadc9c
 .controls{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(560px,100%);background:#fff;border-top:1px solid var(--line);padding:12px 16px}
 .grid{display:grid;gap:8px}button{width:100%;padding:12px;border-radius:11px;border:1px solid #aebfca;background:#fff;color:var(--blue);font-weight:650;text-align:left;font-size:.98rem}
 .primary{background:var(--green);color:#fff;border-color:var(--green);text-align:center}.secondary{color:var(--green);border-color:var(--green);text-align:center}
-.inputrow{display:flex;gap:8px}input{flex:1;min-width:0;padding:12px;border:1px solid #aebfca;border-radius:11px;font-size:1rem}
+.inputrow{display:flex;flex-direction:column;gap:8px}
+.inputrow input{width:100%;box-sizing:border-box;padding:12px;border:1px solid #aebfca;border-radius:11px;font-size:1rem}
+.inputrow button{width:100%}
 .card{border:1px solid var(--line);border-radius:10px;padding:10px;margin-top:8px;background:white}.summary{background:#eaf7ef;border:1px solid #bcdcc7;border-radius:12px;padding:12px}
 .small{font-size:.8rem;color:#5d6a73;margin-top:6px}ul{padding-left:22px}
 @media print{header,.controls,.notice,.bar{display:none}main{padding:0}}
@@ -37,7 +39,7 @@ const chat=document.getElementById("chat"), controls=document.getElementById("co
 function prog(v){bar.style.width=v+"%"}
 function say(t,w="bot",html=false){let r=document.createElement("div");r.className="row "+w;let b=document.createElement("div");b.className="bubble";html?b.innerHTML=t:b.textContent=t;r.appendChild(b);chat.appendChild(r);window.scrollTo(0,document.body.scrollHeight)}
 function opts(a){controls.innerHTML='<div class="grid"></div>';let g=controls.firstChild;a.forEach(x=>{let b=document.createElement("button");b.textContent=x[0];b.onclick=()=>{say(x[0],"user");controls.innerHTML="";x[1]()};g.appendChild(b)})}
-function num(ph,cb){controls.innerHTML='<div class="inputrow"><input id="i" type="number" min="0"><button class="primary" id="go">Continue</button></div>';let i=document.getElementById("i");i.placeholder=ph;i.focus();let f=()=>{let v=Number(i.value);if(Number.isNaN(v))return;say(String(v),"user");controls.innerHTML="";cb(v)};document.getElementById("go").onclick=f;i.onkeydown=e=>{if(e.key==="Enter")f()}}
+function num(ph,cb){controls.innerHTML='<div class="row"><input id="i" type="number" min="0"><button class="primary" id="go">Continue</button></div>';let i=document.getElementById("i");i.placeholder=ph;i.focus();let f=()=>{let v=Number(i.value);if(Number.isNaN(v))return;say(String(v),"user");controls.innerHTML="";cb(v)};document.getElementById("go").onclick=f;i.onkeydown=e=>{if(e.key==="Enter")f()}}
 function text(ph,cb){controls.innerHTML='<div class="inputrow"><input id="i"><button class="primary" id="go">Continue</button></div>';let i=document.getElementById("i");i.placeholder=ph;i.focus();let f=()=>{let v=i.value.trim();if(!v)return;say(v,"user");controls.innerHTML="";cb(v)};document.getElementById("go").onclick=f;i.onkeydown=e=>{if(e.key==="Enter")f()}}
 function add(x){if(x&&!s.ex.includes(x))s.ex.push(x)} function esc(x){return String(x).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
 function norm(x){return (x||"").toLowerCase().replace(/[^a-z0-9]+/g," ").trim()}
