@@ -7,10 +7,10 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--text)}
 .app{max-width:560px;margin:auto;min-height:100vh;background:white}header{background:var(--blue);color:white;padding:18px;position:sticky;top:0;z-index:2}
 h1{font-size:1.15rem;margin:0}header p{margin:4px 0 0;font-size:.84rem}.bar{height:5px;background:#dce8ee}.bar span{display:block;height:100%;background:var(--green);width:0}
-main{padding:16px 16px 120px}.notice{background:#fff7dc;border:1px solid #eadc9c;border-radius:12px;padding:11px;font-size:.86rem;line-height:1.4;margin-bottom:14px}
+main{padding:16px 16px 260px}.notice{background:#fff7dc;border:1px solid #eadc9c;border-radius:12px;padding:11px;font-size:.86rem;line-height:1.4;margin-bottom:14px}
 .chat{display:flex;flex-direction:column;gap:12px}.row{display:flex}.bot{justify-content:flex-start}.user{justify-content:flex-end}
 .bubble{max-width:88%;padding:12px 14px;border-radius:16px;line-height:1.45}.bot .bubble{background:#edf4f7;border:1px solid #dbe8ee}.user .bubble{background:var(--blue);color:#fff}
-.controls{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(560px,100%);background:#fff;border-top:1px solid var(--line);padding:12px 16px}
+.controls{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(560px,100%);background:#fff;border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -4px 12px rgba(0,0,0,.06);}
 .grid{display:grid;gap:8px}button{width:100%;padding:12px;border-radius:11px;border:1px solid #aebfca;background:#fff;color:var(--blue);font-weight:650;text-align:left;font-size:.98rem}
 .primary{background:var(--green);color:#fff;border-color:var(--green);text-align:center}.secondary{color:var(--green);border-color:var(--green);text-align:center}
 .inputrow{display:flex;flex-direction:column;gap:8px}
@@ -37,7 +37,7 @@ const LPIE=[{"campus":"All Campuses","program":"Associate (AA/AS/AA-T/AS-T) Degr
 const s={ex:[],age:null,hours:0,campus:"",program:""};
 const chat=document.getElementById("chat"), controls=document.getElementById("controls"), bar=document.getElementById("bar");
 function prog(v){bar.style.width=v+"%"}
-function say(t,w="bot",html=false){let r=document.createElement("div");r.className="row "+w;let b=document.createElement("div");b.className="bubble";html?b.innerHTML=t:b.textContent=t;r.appendChild(b);chat.appendChild(r);window.scrollTo(0,document.body.scrollHeight)}
+say(t,w="bot",html=false){ let r=document.createElement("div"); r.className="row "+w; let b=document.createElement("div"); b.className="bubble"; html ? b.innerHTML=t : b.textContent=t; r.appendChild(b); chat.appendChild(r); setTimeout(()=>{ r.scrollIntoView({ behavior:"smooth", block:"center" }); },50); }
 function opts(a){controls.innerHTML='<div class="grid"></div>';let g=controls.firstChild;a.forEach(x=>{let b=document.createElement("button");b.textContent=x[0];b.onclick=()=>{say(x[0],"user");controls.innerHTML="";x[1]()};g.appendChild(b)})}
 function num(ph,cb){controls.innerHTML='<div class="row"><input id="i" type="number" min="0"><button class="primary" id="go">Continue</button></div>';let i=document.getElementById("i");i.placeholder=ph;i.focus();let f=()=>{let v=Number(i.value);if(Number.isNaN(v))return;say(String(v),"user");controls.innerHTML="";cb(v)};document.getElementById("go").onclick=f;i.onkeydown=e=>{if(e.key==="Enter")f()}}
 function text(ph,cb){controls.innerHTML='<div class="inputrow"><input id="i"><button class="primary" id="go">Continue</button></div>';let i=document.getElementById("i");i.placeholder=ph;i.focus();let f=()=>{let v=i.value.trim();if(!v)return;say(v,"user");controls.innerHTML="";cb(v)};document.getElementById("go").onclick=f;i.onkeydown=e=>{if(e.key==="Enter")f()}}
